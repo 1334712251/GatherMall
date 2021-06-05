@@ -30,11 +30,6 @@ hs_err_pid*
 .idea/compiler.xml
 .idea/jarRepositories.xml
 .idea/libraries/
-GatherCoupon/src/
-GatherMember/src/
-GatherOrder/src/
-GatherProduct/src/
-GatherWare/src/
 /GatherMember/GatherMember.iml
 
 
