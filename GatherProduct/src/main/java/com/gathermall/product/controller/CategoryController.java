@@ -1,21 +1,14 @@
 package com.gathermall.product.controller;
 
 import java.util.Arrays;
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.gathermall.product.entity.Category;
 import com.gathermall.product.service.CategoryService;
-import com.gathermall.common.utils.PageUtils;
 import com.gathermall.common.utils.R;
-
-
 
 
 @RestController
@@ -27,18 +20,17 @@ public class CategoryController {
     /**
      * 列表
      */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = categoryService.queryPage(params);
-
-        return R.ok().put("page", page);
+    @GetMapping("/list/tree")
+    public R list(){
+        List<Category> data = categoryService.listWithTree();
+        return R.ok().put("data", data);
     }
 
 
     /**
      * 信息
      */
-    @RequestMapping("/info/{catId}")
+    @GetMapping("/info/{catId}")
     public R info(@PathVariable("catId") Long catId){
 		Category category = categoryService.getById(catId);
 
@@ -48,28 +40,33 @@ public class CategoryController {
     /**
      * 保存
      */
-    @RequestMapping("/save")
+    @PostMapping("/save")
     public R save(@RequestBody Category category){
 		categoryService.save(category);
 
         return R.ok();
     }
 
+    @PutMapping("/update/sort")
+    public R updateSort(@RequestBody Category[] category){
+        categoryService.updateBatchById(Arrays.asList(category));
+        return R.ok();
+    }
+
     /**
      * 修改
      */
-    @RequestMapping("/update")
+    @PutMapping("/update")
     public R update(@RequestBody Category category){
-		categoryService.updateById(category);
-
+		categoryService.updateCascade(category);
         return R.ok();
     }
 
     /**
      * 删除
      */
-    @RequestMapping("/delete")
-    public R delete(@RequestBody Long[] catIds){
+    @DeleteMapping("/delete/{catIds}")
+    public R delete(@PathVariable Long[] catIds){
 		categoryService.removeByIds(Arrays.asList(catIds));
 
         return R.ok();

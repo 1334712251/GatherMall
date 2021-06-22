@@ -4,15 +4,21 @@ server:
     uri-encoding: UTF-8
     max-threads: 1000
     min-spare-threads: 30
+    connection-timeout: 200000
   port: 8080
-  connection-timeout: 5000ms
   servlet:
     context-path: /renren-fast
 
 spring:
   # 环境 dev|test|prod
+  application:
+    name: renren-fast
   profiles:
     active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 120.26.84.226:8848
   # jackson时间格式化
   jackson:
     time-zone: GMT+8

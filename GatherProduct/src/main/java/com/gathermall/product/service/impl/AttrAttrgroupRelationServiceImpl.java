@@ -11,9 +11,11 @@ import com.gathermall.common.utils.Query;
 import com.gathermall.product.dao.AttrAttrgroupRelationDao;
 import com.gathermall.product.entity.AttrAttrgroupRelation;
 import com.gathermall.product.service.AttrAttrgroupRelationService;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("attrAttrgroupRelationService")
+@Transactional
 public class AttrAttrgroupRelationServiceImpl extends ServiceImpl<AttrAttrgroupRelationDao, AttrAttrgroupRelation> implements AttrAttrgroupRelationService {
 
     @Override

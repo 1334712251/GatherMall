@@ -13,6 +13,7 @@
 
     <artifactId>GatherCommon</artifactId>
 
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
         <dependency>
@@ -31,5 +32,6 @@
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
         </dependency>
+
     </dependencies>
 </project>

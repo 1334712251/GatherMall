@@ -3,7 +3,7 @@
 
 <mapper namespace="com.gathermall.product.dao.CategoryBrandRelationDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.gathermall.product.entity.CategoryBrandRelation" id="categoryBrandRelationMap">
         <result property="id" column="id"/>
         <result property="brandId" column="brand_id"/>
@@ -11,6 +11,12 @@
         <result property="brandName" column="brand_name"/>
         <result property="catelogName" column="catelog_name"/>
     </resultMap>
+
+    <update id="updateCategory">
+        UPDATE `goods_category_brand_relation`
+        SET `catelog_name` = #{name}
+        WHERE `catelog_id` = #{catId}
+    </update>
 
 
 </mapper>

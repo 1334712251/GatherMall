@@ -3,14 +3,16 @@ package com.gathermall.product.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.gathermall.product.vo.AttrRespVo;
+import com.gathermall.product.vo.AttrVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gathermall.product.entity.Attr;
 import com.gathermall.product.service.AttrService;
 import com.gathermall.common.utils.PageUtils;
 import com.gathermall.common.utils.R;
@@ -24,40 +26,40 @@ public class AttrController {
     /**
      * 列表
      */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = attrService.queryPage(params);
+    @RequestMapping("/{attrType}/list")
+    public R list(@RequestParam Map<String, Object> params, @PathVariable("attrType") String attrType) {
+        PageUtils page = attrService.queryPage(params,attrType);
 
         return R.ok().put("page", page);
     }
 
 
     /**
-     * 信息
+     * 07、查询属性详情
      */
     @RequestMapping("/info/{attrId}")
-    public R info(@PathVariable("attrId") Long attrId){
-		Attr attr = attrService.getById(attrId);
+    public R info(@PathVariable("attrId") Long attrId) {
+        AttrRespVo respVo = attrService.getAttrInfo(attrId);
 
-        return R.ok().put("attr", attr);
+        return R.ok().put("respVo", respVo);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    public R save(@RequestBody Attr attr){
-		attrService.save(attr);
+    public R save(@RequestBody AttrVo attrVo) {
+        attrService.saveAttr(attrVo);
 
         return R.ok();
     }
 
     /**
-     * 修改
+     * 08、修改属性
      */
     @RequestMapping("/update")
-    public R update(@RequestBody Attr attr){
-		attrService.updateById(attr);
+    public R update(@RequestBody AttrVo attrVo) {
+        attrService.updateAttr(attrVo);
 
         return R.ok();
     }
@@ -66,8 +68,8 @@ public class AttrController {
      * 删除
      */
     @RequestMapping("/delete")
-    public R delete(@RequestBody Long[] attrIds){
-		attrService.removeByIds(Arrays.asList(attrIds));
+    public R delete(@RequestBody Long[] attrIds) {
+        attrService.removeByIds(Arrays.asList(attrIds));
 
         return R.ok();
     }

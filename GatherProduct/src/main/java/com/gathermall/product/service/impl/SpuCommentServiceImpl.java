@@ -11,9 +11,11 @@ import com.gathermall.common.utils.Query;
 import com.gathermall.product.dao.SpuCommentDao;
 import com.gathermall.product.entity.SpuComment;
 import com.gathermall.product.service.SpuCommentService;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("spuCommentService")
+@Transactional
 public class SpuCommentServiceImpl extends ServiceImpl<SpuCommentDao, SpuComment> implements SpuCommentService {
 
     @Override

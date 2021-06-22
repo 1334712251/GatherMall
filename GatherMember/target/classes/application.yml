@@ -18,3 +18,9 @@
 #  global-config:
 #    db-config:
 #      id-type: auto
+
+spring:
+  cloud:
+    nacos:
+      config:
+        config-long-poll-timeout: 460000

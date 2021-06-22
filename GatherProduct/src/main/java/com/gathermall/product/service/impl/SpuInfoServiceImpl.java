@@ -11,9 +11,11 @@ import com.gathermall.common.utils.Query;
 import com.gathermall.product.dao.SpuInfoDao;
 import com.gathermall.product.entity.SpuInfo;
 import com.gathermall.product.service.SpuInfoService;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("spuInfoService")
+@Transactional
 public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> implements SpuInfoService {
 
     @Override

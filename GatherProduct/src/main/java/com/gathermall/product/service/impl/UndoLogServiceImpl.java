@@ -11,9 +11,11 @@ import com.gathermall.common.utils.Query;
 import com.gathermall.product.dao.UndoLogDao;
 import com.gathermall.product.entity.UndoLog;
 import com.gathermall.product.service.UndoLogService;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("undoLogService")
+@Transactional
 public class UndoLogServiceImpl extends ServiceImpl<UndoLogDao, UndoLog> implements UndoLogService {
 
     @Override

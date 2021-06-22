@@ -16,8 +16,6 @@ import com.gathermall.common.utils.PageUtils;
 import com.gathermall.common.utils.R;
 
 
-
-
 @RestController
 @RequestMapping("product/attrattrgrouprelation")
 public class AttrAttrgroupRelationController {

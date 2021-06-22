@@ -11,9 +11,11 @@ import com.gathermall.common.utils.Query;
 import com.gathermall.product.dao.CommentReplayDao;
 import com.gathermall.product.entity.CommentReplay;
 import com.gathermall.product.service.CommentReplayService;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("commentReplayService")
+@Transactional
 public class CommentReplayServiceImpl extends ServiceImpl<CommentReplayDao, CommentReplay> implements CommentReplayService {
 
     @Override

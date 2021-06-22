@@ -11,9 +11,11 @@ import com.gathermall.common.utils.Query;
 import com.gathermall.product.dao.SkuSaleAttrValueDao;
 import com.gathermall.product.entity.SkuSaleAttrValue;
 import com.gathermall.product.service.SkuSaleAttrValueService;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("skuSaleAttrValueService")
+@Transactional
 public class SkuSaleAttrValueServiceImpl extends ServiceImpl<SkuSaleAttrValueDao, SkuSaleAttrValue> implements SkuSaleAttrValueService {
 
     @Override
