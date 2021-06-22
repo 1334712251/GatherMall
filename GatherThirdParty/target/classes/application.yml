@@ -1,0 +1,21 @@
+server:
+  port: 30000
+
+spring:
+  application:
+    name: GatherThirdParty
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 120.26.84.226:8848
+    alicloud:
+      access-key: LTAI5tPk7DmGhSVo3BCkSgiH
+      secret-key: EvBZm7xBukkb69dYhFTvBenLHOpN6o
+      oss:
+        endpoint: oss-cn-beijing.aliyuncs.com
+        bucket: gathermall
+
+
+
+
+
