@@ -14,8 +14,11 @@ public class GatherGatewayCorsConfiguration {
     public CorsWebFilter corsWebFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration corsConfiguration = new CorsConfiguration();
+        //允许任何域名访问
         corsConfiguration.addAllowedHeader("*");
+        //允许任何头
         corsConfiguration.addAllowedMethod("*");
+        //允许任何方法
         corsConfiguration.addAllowedOrigin("*");
         corsConfiguration.setAllowCredentials(true);
         source.registerCorsConfiguration("/**",corsConfiguration);

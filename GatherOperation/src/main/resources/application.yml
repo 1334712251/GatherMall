@@ -2,8 +2,8 @@ server:
   port: 8000
 spring:
   datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://120.26.84.226./gather_mall_operation?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://120.26.84.226/gather_mall_operation?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
   cloud:
