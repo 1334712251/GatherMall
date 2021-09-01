@@ -1,0 +1,10 @@
+server:
+  port: 30000
+spring:
+  application:
+    name: GatherThirdParty
+  cloud:
+    nacos:
+      server-addr: 120.26.84.226:8848
+
+
