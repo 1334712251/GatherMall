@@ -34,3 +34,12 @@ hs_err_pid*
 
 
 .idea
+/GatherCommon/target/
+/GatherGateway/target/
+/GatherMember/target/
+/GatherOperation/target/
+/GatherOrder/target/
+/GatherProduct/target/
+/GatherThirdParty/target/
+/GatherWare/target/
+/renren-generator/target/
