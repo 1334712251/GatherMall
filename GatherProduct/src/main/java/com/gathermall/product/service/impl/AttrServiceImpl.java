@@ -69,7 +69,6 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
         } else {
             wrapper.eq("catelog_id", params.get("categoryId"));
 
-
             IPage<Attr> page = this.page(new Query<Attr>().getPage(params), wrapper);
 
             PageUtils pageUtils = new PageUtils(page);
