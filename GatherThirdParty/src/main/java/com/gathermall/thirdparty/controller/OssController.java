@@ -30,14 +30,14 @@ public class OssController {
     @Autowired
     private OSS ossClient;
 
-    @Value("${spring.cloud.alibaba.access-key}")
-    private String accessId;
+    @Value("${spring.cloud.alibaba.oss.bucket}")
+    private String bucket;
 
     @Value("${spring.cloud.alibaba.oss.endpoint}")
     private String endpoint;
 
-    @Value("${spring.cloud.alibaba.oss.bucket}")
-    private String bucket;
+    @Value("${spring.cloud.alibaba.access-key}")
+    private String accessId;
 
     @GetMapping
     public R doGet(HttpServletRequest request, HttpServletResponse response)

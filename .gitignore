@@ -43,3 +43,4 @@ hs_err_pid*
 /GatherThirdParty/target/
 /GatherWare/target/
 /renren-generator/target/
+/GatherThirdParty/src/main/resources/
