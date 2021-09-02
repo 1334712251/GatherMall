@@ -5,7 +5,6 @@ import com.gathermall.product.dao.BrandDao;
 import com.gathermall.product.dao.CategoryDao;
 import com.gathermall.product.entity.Brand;
 import com.gathermall.product.entity.Category;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Map;

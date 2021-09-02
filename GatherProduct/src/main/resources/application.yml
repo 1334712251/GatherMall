@@ -6,8 +6,8 @@ spring:
   application:
     name: GatherProduct
   datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://120.26.84.226/gather_mall_goods?characterEncoding=utf-8&useSSL=false
-    driverClassName: com.mysql.jdbc.Driver
     username: root
     password: 123456
     hikari:

@@ -37,5 +37,3 @@ spring:
             - Path=/api/**
           filters:
             - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}
-  application:
-    name: GatherGateway
