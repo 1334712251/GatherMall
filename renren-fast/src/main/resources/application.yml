@@ -7,6 +7,7 @@ server:
     connection-timeout: 200000
   port: 8080
   servlet:
+    #访问的项目名地址
     context-path: /renren-fast
 
 spring:

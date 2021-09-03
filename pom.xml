@@ -2,42 +2,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.2.RELEASE</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <description>父pom</description>
-
     <groupId>com.GatherMall</groupId>
     <artifactId>GatherMall</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <description>sum-pom</description>
     <packaging>pom</packaging>
 
     <modules>
-        <module>GatherProduct</module>
-        <module>GatherOrder</module>
-        <module>GatherWare</module>
-        <module>GatherOperation</module>
-        <module>GatherMember</module>
-        <module>renren-fast</module>
-        <module>renren-generator</module>
-        <module>GatherCommon</module>
-        <module>GatherGateway</module>
-        <module>GatherThirdParty</module>
+        <module>GatherProduct</module>       <!--商品服务-->
+        <module>GatherOrder</module>         <!--订单服务-->
+        <module>GatherWare</module>          <!--仓库服务-->
+        <module>GatherOperation</module>     <!--优惠券服务-->
+        <module>GatherMember</module>        <!--会员服务-->
+        <module>renren-fast</module>         <!--后台服务-->
+        <module>renren-generator</module>    <!--代码生成器-->
+        <module>GatherCommon</module>        <!--公共依赖-->
+        <module>GatherGateway</module>       <!--网关服务-->
+        <module>GatherThirdParty</module>    <!--第三方服务-->
     </modules>
-
-    <!--统一管理jar包版本-->
-    <properties>
-
-    </properties>
-
-    <dependencies>
-    </dependencies>
-
-    <dependencyManagement>
-    </dependencyManagement>
 
 </project>
