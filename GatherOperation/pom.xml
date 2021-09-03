@@ -12,6 +12,7 @@
     <groupId>com.GatherMall.Coupon</groupId>
     <artifactId>GatherOperation</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <description>优惠券服务</description>
 
 
     <properties>
