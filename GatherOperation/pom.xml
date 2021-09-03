@@ -9,6 +9,8 @@
         <version>2.3.2.RELEASE</version>
         <relativePath/>
     </parent>
+
+
     <groupId>com.GatherMall.Coupon</groupId>
     <artifactId>GatherOperation</artifactId>
     <version>1.0-SNAPSHOT</version>
