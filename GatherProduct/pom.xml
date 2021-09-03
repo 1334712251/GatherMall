@@ -13,6 +13,7 @@
     <groupId>com.GatherMall.Product</groupId>
     <artifactId>GatherProduct</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <description>商品服务</description>
 
     <properties>
         <java.version>1.8</java.version>
