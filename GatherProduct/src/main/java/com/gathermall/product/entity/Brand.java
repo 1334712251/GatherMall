@@ -1,18 +1,15 @@
 package com.gathermall.product.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import com.gathermall.common.valid.AddGroup;
 import com.gathermall.common.valid.UpdateGroup;
-import com.gathermall.common.valid.isValue;
+import com.gathermall.common.valid.ListValue;
 import com.gathermall.common.valid.updateStatusGroup;
 import lombok.Data;
-import lombok.NonNull;
 import org.hibernate.validator.constraints.URL;
 
 import javax.validation.constraints.*;
@@ -50,8 +47,8 @@ public class Brand implements Serializable {
     /**
      * 显示状态[0-不显示；1-显示]
      */
-    @NotNull
-    @isValue(value = {0, 1}, groups = {AddGroup.class, updateStatusGroup.class})
+    @NotNull(groups = {AddGroup.class, updateStatusGroup.class})
+    @ListValue(value = {0, 1}, groups = {AddGroup.class, updateStatusGroup.class})
     private Integer showStatus;
     /**
      * 检索首字母
