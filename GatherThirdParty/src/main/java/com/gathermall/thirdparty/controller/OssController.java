@@ -24,19 +24,19 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/oss/party")
+@RequestMapping("/oss/policy")
 public class OssController {
-
+    //http://localhost:88/api/thirdparty/oss/policy
     @Autowired
     private OSS ossClient;
 
-    @Value("${spring.cloud.alibaba.oss.bucket}")
+    @Value("${spring.cloud.alicloud.oss.bucket}")
     private String bucket;
 
-    @Value("${spring.cloud.alibaba.oss.endpoint}")
+    @Value("${spring.cloud.alicloud.oss.endpoint}")
     private String endpoint;
 
-    @Value("${spring.cloud.alibaba.access-key}")
+    @Value("${spring.cloud.alicloud.access-key}")
     private String accessId;
 
     @GetMapping

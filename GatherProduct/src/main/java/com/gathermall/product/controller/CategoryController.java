@@ -20,7 +20,7 @@ public class CategoryController {
     /**
      * 列表
      */
-    @GetMapping("/list/tree")
+    @RequestMapping("/list/tree")
     public R list(){
         List<Category> data = categoryService.listWithTree();
         return R.ok().put("data", data);
@@ -30,24 +30,29 @@ public class CategoryController {
     /**
      * 信息
      */
-    @GetMapping("/info/{catId}")
+    @RequestMapping("/info/{catId}")
     public R info(@PathVariable("catId") Long catId){
 		Category category = categoryService.getById(catId);
 
-        return R.ok().put("category", category);
+        return R.ok().put("data", category);
     }
 
     /**
      * 保存
      */
-    @PostMapping("/save")
+    @RequestMapping("/save")
     public R save(@RequestBody Category category){
 		categoryService.save(category);
 
         return R.ok();
     }
 
-    @PutMapping("/update/sort")
+    /**
+     * 批量修改
+     * @param category
+     * @return
+     */
+    @RequestMapping("/update/sort")
     public R updateSort(@RequestBody Category[] category){
         categoryService.updateBatchById(Arrays.asList(category));
         return R.ok();
@@ -56,7 +61,7 @@ public class CategoryController {
     /**
      * 修改
      */
-    @PutMapping("/update")
+    @RequestMapping("/update")
     public R update(@RequestBody Category category){
 		categoryService.updateCascade(category);
         return R.ok();
@@ -65,10 +70,10 @@ public class CategoryController {
     /**
      * 删除
      */
-    @DeleteMapping("/delete/{catIds}")
+    @RequestMapping("/delete/{catIds}")
     public R delete(@PathVariable Long[] catIds){
 		categoryService.removeByIds(Arrays.asList(catIds));
-
+		categoryService.removeMenuByIds(Arrays.asList(catIds));
         return R.ok();
     }
 

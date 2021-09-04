@@ -69,6 +69,12 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, Category> impl
         categoryBrandRelationService.updateCategory(category.getCatId(),category.getName());
     }
 
+    @Override
+    public void removeMenuByIds(List<Long> asList) {
+        //TODO 检查当前删除的菜单id，是否被别的地方引用
+        baseMapper.deleteBatchIds(asList);
+    }
+
 
     private List<Long> findParentPath(Long catelogId, List<Long> paths){
         paths.add(catelogId);
