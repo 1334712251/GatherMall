@@ -72,7 +72,7 @@ public class BrandController {
     }
 
     /**
-     * 修改
+     * 修改状态
      */
     @RequestMapping("/update/status")
     public R updateStatus(@Validated({updateStatusGroup.class}) @RequestBody Brand brand) {
