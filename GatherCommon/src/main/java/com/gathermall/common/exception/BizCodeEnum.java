@@ -3,8 +3,8 @@ package com.gathermall.common.exception;
 public enum BizCodeEnum {
 
 
-    UNKNOWN_EXCEPTION(10000,"系统未知异常"),
-    VALID_EXCEPTION(10001,"参数格式校验失败");
+    UNKNOWN_EXCEPTION(500,"系统未知异常"),
+    VALID_EXCEPTION(400,"参数格式校验失败");
 
     private int code;
     private String msg;

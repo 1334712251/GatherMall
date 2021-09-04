@@ -7,15 +7,15 @@ spring:
         server-addr: 120.26.84.226:8848
     gateway:
       routes:
-        - id: test_route
-          uri: https://www.baidu.com
-          predicates:
-            - Query=url,baidu
-
-        - id: qq_route
-          uri: https://www.qq.com
-          predicates:
-            - Query=url,qq
+#        - id: test_route
+#          uri: https://www.baidu.com
+#          predicates:
+#            - Query=url,baidu
+#
+#        - id: qq_route
+#          uri: https://www.qq.com
+#          predicates:
+#            - Query=url,qq
 
         - id: product_route
           uri: lb://GatherProduct
@@ -31,9 +31,10 @@ spring:
           filters:
             - RewritePath=/api/thirdparty/(?<segment>.*),/$\{segment}
 
-        - id: admin_route
-          uri: lb://renren-fast
+        - id: admin_route                 #id:标识
+          uri: lb://renren-fast           #uri:nacos服务注册的名字
           predicates:
-            - Path=/api/**
+            - Path=/api/**                #断言：输入的api后面所有都识别过来
           filters:
-            - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}
+            - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}       #路径重写
+              #     /api/123/456         重写为  /renren-fast/123/456
