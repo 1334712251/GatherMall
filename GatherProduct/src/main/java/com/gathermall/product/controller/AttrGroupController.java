@@ -1,6 +1,7 @@
 package com.gathermall.product.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.gathermall.product.service.CategoryService;
@@ -30,11 +31,15 @@ public class AttrGroupController {
     /**
      * 列表
      */
-    @RequestMapping("/list")
+    @RequestMapping("/list/{categoryId}")
     public R list(@RequestParam Map<String, Object> params,
-                  @RequestParam(value = "categoryId", required = false)Long categoryId){
+                  @PathVariable Long categoryId) {
+        if (categoryId != 0) {
+            params.put("categoryId", categoryId);
+            PageUtils page = attrGroupService.queryPage(params);
+            return R.ok().put("page", page);
+        }
         PageUtils page = attrGroupService.queryPage(params);
-
         return R.ok().put("page", page);
     }
 
@@ -43,8 +48,8 @@ public class AttrGroupController {
      * 信息
      */
     @RequestMapping("/info/{attrGroupId}")
-    public R info(@PathVariable("attrGroupId") Long attrGroupId){
-		AttrGroup attrGroup = attrGroupService.getById(attrGroupId);
+    public R info(@PathVariable("attrGroupId") Long attrGroupId) {
+        AttrGroup attrGroup = attrGroupService.getById(attrGroupId);
 
         Long catelogId = attrGroup.getCatelogId();
         Long[] path = (Long[]) categoryService.findCatelogPath(catelogId);
@@ -57,8 +62,8 @@ public class AttrGroupController {
      * 保存
      */
     @RequestMapping("/save")
-    public R save(@RequestBody AttrGroup attrGroup){
-		attrGroupService.save(attrGroup);
+    public R save(@RequestBody AttrGroup attrGroup) {
+        attrGroupService.save(attrGroup);
 
         return R.ok();
     }
@@ -67,8 +72,8 @@ public class AttrGroupController {
      * 修改
      */
     @RequestMapping("/update")
-    public R update(@RequestBody AttrGroup attrGroup){
-		attrGroupService.updateById(attrGroup);
+    public R update(@RequestBody AttrGroup attrGroup) {
+        attrGroupService.updateById(attrGroup);
 
         return R.ok();
     }
@@ -77,8 +82,8 @@ public class AttrGroupController {
      * 删除
      */
     @RequestMapping("/delete")
-    public R delete(@RequestBody Long[] attrGroupIds){
-		attrGroupService.removeByIds(Arrays.asList(attrGroupIds));
+    public R delete(@RequestBody Long[] attrGroupIds) {
+        attrGroupService.removeByIds(Arrays.asList(attrGroupIds));
 
         return R.ok();
     }

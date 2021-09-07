@@ -22,7 +22,7 @@ spring:
           predicates:
             - Path=/api/product/**
           filters:
-            - RewritePath=/api/(?<segment>.*),/$\{segment}
+            - RewritePath=/api/product/(?<segment>.*),/product/$\{segment}
 
         - id: third_party_route
           uri: lb://GatherThirdParty

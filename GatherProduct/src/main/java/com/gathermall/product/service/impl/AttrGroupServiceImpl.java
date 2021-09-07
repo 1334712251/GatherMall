@@ -46,5 +46,4 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroup> i
             return new PageUtils(page);
         }
     }
-
 }
