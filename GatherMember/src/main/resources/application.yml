@@ -1,26 +1,29 @@
-#server:
-#  port: 7000
-#spring:
-#  datasource:
-#    driverClassName: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://120.26.84.226/gather_mall_user?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
-#    username: root
-#    password: 123456
-#  cloud:
-#    nacos:
-#      discovery:
-#        server-addr: 120.26.84.226:8848
-#  application:
-#    name: GatherMember
-#
-#mybatis-plus:
-#  mapper-locations: classpath:/mapper/**/*.xml
-#  global-config:
-#    db-config:
-#      id-type: auto
-
+server:
+  port: 7000
 spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://120.26.84.226/gather_mall_user?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: mysql1553381095
   cloud:
     nacos:
-      config:
-        config-long-poll-timeout: 460000
+      discovery:
+        server-addr: 120.26.84.226:8848
+  application:
+    name: GatherMember
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+
+linhao: linhao
+age: 13
+
+#spring:
+#  cloud:
+#    nacos:
+#      config:
+#        config-long-poll-timeout: 460000

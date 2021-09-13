@@ -24,7 +24,7 @@ import com.gathermall.common.utils.R;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("product/brand")
+@RequestMapping("/product/brand")
 public class BrandController {
 
 

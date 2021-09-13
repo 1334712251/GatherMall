@@ -18,16 +18,20 @@ import com.gathermall.common.utils.PageUtils;
 import com.gathermall.common.utils.R;
 
 @RestController
-@RequestMapping("product/attr")
+@RequestMapping("/product/attr")
 public class AttrController {
+
     @Autowired
     private AttrService attrService;
 
     /**
      * 列表
      */
-    @RequestMapping("/{attrType}/list")
-    public R list(@RequestParam Map<String, Object> params, @PathVariable("attrType") String attrType) {
+    @RequestMapping("/{attrType}/list/{categoryId}")
+    public R list(@RequestParam Map<String, Object> params,
+                  @PathVariable("attrType") String attrType,
+                  @PathVariable("categoryId")Long categoryId) {
+        params.put("categoryId",categoryId);
         PageUtils page = attrService.queryPage(params,attrType);
 
         return R.ok().put("page", page);
@@ -41,7 +45,7 @@ public class AttrController {
     public R info(@PathVariable("attrId") Long attrId) {
         AttrRespVo respVo = attrService.getAttrInfo(attrId);
 
-        return R.ok().put("respVo", respVo);
+        return R.ok().put("attr", respVo);
     }
 
     /**

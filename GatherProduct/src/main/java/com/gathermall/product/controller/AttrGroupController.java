@@ -19,7 +19,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("product/attrgroup")
+@RequestMapping("/product/attrgroup")
 public class AttrGroupController {
 
     @Autowired

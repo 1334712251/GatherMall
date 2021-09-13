@@ -45,13 +45,13 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
     private CategoryService categoryService;
 
     /**
-     * TODO  待测
      *
      * @param params
      * @return
      */
     @Override
     public PageUtils queryPage(Map<String, Object> params, String attrType) {
+        //id和属性名、可选值条件查询
         QueryWrapper<Attr> wrapper = new QueryWrapper<Attr>()
                 .eq("attr_type", "base".equalsIgnoreCase(attrType) ? 1 : 0);
         String key = (String) params.get("key");
@@ -62,48 +62,68 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
                         .or().like("value_select", key);
             });
         }
-        if (StringUtils.isEmpty(params.get("categoryId"))) {
-
+        //没有传分类id
+        if (params.get("categoryId").equals(0L)) {
             IPage<Attr> page = this.page(new Query<Attr>().getPage(params), wrapper);
-            return new PageUtils(page);
+
+            PageUtils pageUtils = new PageUtils(page);
+            List<AttrRespVo> respVos = getAttrRespVos(attrType, page);
+
+            pageUtils.setList(respVos);
+            return pageUtils;
+
         } else {
             wrapper.eq("catelog_id", params.get("categoryId"));
 
             IPage<Attr> page = this.page(new Query<Attr>().getPage(params), wrapper);
 
             PageUtils pageUtils = new PageUtils(page);
-            List<Attr> records = page.getRecords();
-            List<AttrRespVo> respVos = records.stream().map(attr -> {
-                AttrRespVo attrRespVo = new AttrRespVo();
-                BeanUtils.copyProperties(attr, attrRespVo);
-
-                if ("base".equalsIgnoreCase(attrType)) {
-                    AttrAttrgroupRelation attrId = attrAttrgroupRelationDao
-                            .selectOne(new QueryWrapper<AttrAttrgroupRelation>()
-                                    .eq("attr_id", attr.getAttrId()));
-                    if (!StringUtils.isEmpty(attrId)) {
-                        AttrGroup attrGroup = attrGroupDao.selectById(attrId.getAttrGroupId());
-                        attrRespVo.setGroupName(attrGroup.getAttrGroupName());
-                    }
-                }
-
-                Category category = categoryDao.selectById(attr.getCatelogId());
-
-                if (!StringUtils.isEmpty(category)) {
-                    attrRespVo.setCatelogName(category.getName());
-                }
-                return attrRespVo;
-            }).collect(Collectors.toList());
+            List<AttrRespVo> respVos = getAttrRespVos(attrType, page);
 
             pageUtils.setList(respVos);
             return pageUtils;
         }
     }
 
+    /**
+     * TODO 优化：把分类和分组信息放在redis里面
+     *
+     * 匹配分类名字和分组名字
+     * @param attrType
+     * @param page
+     * @return
+     */
+    private List<AttrRespVo> getAttrRespVos(String attrType, IPage<Attr> page) {
+        List<Attr> records = page.getRecords();
+
+        return records.stream().map(attr -> {
+            AttrRespVo attrRespVo = new AttrRespVo();
+            BeanUtils.copyProperties(attr, attrRespVo);
+
+            if ("base".equalsIgnoreCase(attrType)) {
+                AttrAttrgroupRelation attrId = attrAttrgroupRelationDao
+                        .selectOne(new QueryWrapper<AttrAttrgroupRelation>()
+                                .eq("attr_id", attr.getAttrId()));
+                if (!StringUtils.isEmpty(attrId)) {
+                    AttrGroup attrGroup = attrGroupDao.selectById(attrId.getAttrGroupId());
+                    attrRespVo.setGroupName(attrGroup.getAttrGroupName());
+                }
+            }
+
+            Category category = categoryDao.selectById(attr.getCatelogId());
+
+            if (!StringUtils.isEmpty(category)) {
+                attrRespVo.setCatelogName(category.getName());
+            }
+
+            return attrRespVo;
+        }).collect(Collectors.toList());
+    }
+
     @Override
     public void saveAttr(AttrVo attrVo) {
         Attr attr = new Attr();
-        BeanUtils.copyProperties(attrVo, attr);
+        BeanUtils.copyProperties(attrVo, attr);   //复制属性，从attrVo复制到attr里面
         this.save(attr);
         //保存关联关系
         AttrAttrgroupRelation attrAttrgroupRelation = new AttrAttrgroupRelation();

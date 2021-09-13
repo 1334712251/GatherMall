@@ -55,16 +55,21 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
 
     }
 
+    /**
+     * 通过主键id修改自己其中字段的值
+     * @param brandId
+     * @param name
+     */
     @Override
     public void updateBrand(Long brandId, String name) {
         CategoryBrandRelation categoryBrandRelation = new CategoryBrandRelation();
 
         categoryBrandRelation.setBrandId(brandId);
         categoryBrandRelation.setBrandName(name);
-        this.update(categoryBrandRelation,
-                new UpdateWrapper<CategoryBrandRelation>().eq("brand_id",brandId));
+        this.update(categoryBrandRelation, new UpdateWrapper<CategoryBrandRelation>().eq("brand_id",brandId));
     }
 
+    
     @Override
     public void updateCategory(Long catId, String name) {
         this.baseMapper.updateCategory(catId,name);

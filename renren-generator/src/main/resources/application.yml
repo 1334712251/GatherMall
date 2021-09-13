@@ -8,7 +8,7 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://120.26.84.226/gather_mall_goods?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
-    password: 123456
+    password: mysql1553381095
     #oracle配置
     #    driverClassName: oracle.jdbc.OracleDriver
     #    url: jdbc:oracle:thin:@47.100.206.162:1521:xe

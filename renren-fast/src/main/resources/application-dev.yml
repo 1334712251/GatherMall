@@ -5,7 +5,7 @@ spring:
             driver-class-name: com.mysql.cj.jdbc.Driver
             url: jdbc:mysql://120.26.84.226/gather_mall_admin?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
             username: root
-            password: 123456
+            password: mysql1553381095
             initial-size: 10
             max-active: 100
             min-idle: 10

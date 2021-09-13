@@ -5,7 +5,7 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://120.26.84.226/gather_mall_operation?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
-    password: 123456
+    password: mysql1553381095
   cloud:
     nacos:
       discovery:

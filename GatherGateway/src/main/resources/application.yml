@@ -24,6 +24,8 @@ spring:
           filters:
             - RewritePath=/api/product/(?<segment>.*),/product/$\{segment}
 
+          #http://localhost:88/api/product/attr/base/list/0?t=1631368788763&page=1&limit=10&key=
+
         - id: third_party_route
           uri: lb://GatherThirdParty
           predicates:
