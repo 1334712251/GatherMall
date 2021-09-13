@@ -1,6 +1,7 @@
 package com.gathermall.product.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.gathermall.common.constant.ProductConstant;
 import com.gathermall.product.dao.AttrAttrgroupRelationDao;
 import com.gathermall.product.dao.AttrGroupDao;
 import com.gathermall.product.dao.CategoryDao;
@@ -53,7 +54,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
     public PageUtils queryPage(Map<String, Object> params, String attrType) {
         //id和属性名、可选值条件查询
         QueryWrapper<Attr> wrapper = new QueryWrapper<Attr>()
-                .eq("attr_type", "base".equalsIgnoreCase(attrType) ? 1 : 0);
+                .eq("attr_type", "base".equalsIgnoreCase(attrType) ? ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode() : ProductConstant.AttrEnum.ATTR_TYPE_SALE.getCode());
         String key = (String) params.get("key");
         if (!StringUtils.isEmpty(key)) {
             wrapper.and((obj) -> {
@@ -126,10 +127,12 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
         BeanUtils.copyProperties(attrVo, attr);   //复制属性，从attrVo复制到attr里面
         this.save(attr);
         //保存关联关系
-        AttrAttrgroupRelation attrAttrgroupRelation = new AttrAttrgroupRelation();
-        attrAttrgroupRelation.setAttrGroupId(attrVo.getAttrGroupId());
-        attrAttrgroupRelation.setAttrId(attr.getAttrId());
-        attrAttrgroupRelationDao.insert(attrAttrgroupRelation);
+        if (attrVo.getAttrType()== ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode()){
+            AttrAttrgroupRelation attrAttrgroupRelation = new AttrAttrgroupRelation();
+            attrAttrgroupRelation.setAttrGroupId(attrVo.getAttrGroupId());
+            attrAttrgroupRelation.setAttrId(attrVo.getAttrId());
+            attrAttrgroupRelationDao.insert(attrAttrgroupRelation);
+        }
     }
 
     @Override
