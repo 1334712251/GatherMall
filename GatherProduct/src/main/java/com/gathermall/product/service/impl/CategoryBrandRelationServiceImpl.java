@@ -69,7 +69,7 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
         this.update(categoryBrandRelation, new UpdateWrapper<CategoryBrandRelation>().eq("brand_id",brandId));
     }
 
-    
+
     @Override
     public void updateCategory(Long catId, String name) {
         this.baseMapper.updateCategory(catId,name);
