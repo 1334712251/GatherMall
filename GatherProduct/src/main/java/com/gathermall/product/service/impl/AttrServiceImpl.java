@@ -141,16 +141,19 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
         Attr attr = this.getById(attrId);
         BeanUtils.copyProperties(attr, respVo);
 
-        //设置分组信息
-        AttrAttrgroupRelation attrAttrgroupRelation = attrAttrgroupRelationDao.selectOne(new QueryWrapper<AttrAttrgroupRelation>()
-                .eq("attr_id", attrId));
-        if (!StringUtils.isEmpty(attrAttrgroupRelation)) {
-            respVo.setAttrGroupId(attrAttrgroupRelation.getAttrGroupId());
-            AttrGroup attrGroup = attrGroupDao.selectById(attrAttrgroupRelation.getAttrGroupId());
-            if (attrGroup != null) {
-                respVo.setGroupName(attrGroup.getAttrGroupName());
+        if (attr.getAttrType()== ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode()) {
+            //设置分组信息
+            AttrAttrgroupRelation attrAttrgroupRelation = attrAttrgroupRelationDao.selectOne(new QueryWrapper<AttrAttrgroupRelation>()
+                    .eq("attr_id", attrId));
+            if (!StringUtils.isEmpty(attrAttrgroupRelation)) {
+                respVo.setAttrGroupId(attrAttrgroupRelation.getAttrGroupId());
+                AttrGroup attrGroup = attrGroupDao.selectById(attrAttrgroupRelation.getAttrGroupId());
+                if (attrGroup != null) {
+                    respVo.setGroupName(attrGroup.getAttrGroupName());
+                }
             }
         }
+
         //设置分类信息
         Long catelogId = attr.getCatelogId();
         Long[] catelogPath = categoryService.findCatelogPath(catelogId);
@@ -163,25 +166,30 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
         return respVo;
     }
 
+    /**
+     * 更新时要指明更新的类型
+     * @param attrVo
+     */
     @Override
     public void updateAttr(AttrVo attrVo) {
         Attr attr = new Attr();
         BeanUtils.copyProperties(attrVo, attr);
         this.updateById(attr);
 
-        Integer count = attrAttrgroupRelationDao.selectCount(new QueryWrapper<AttrAttrgroupRelation>()
-                .eq("attr_id", attrVo.getAttrId()));
-
-        //修改分组关联
-        AttrAttrgroupRelation attrAttrgroupRelation = new AttrAttrgroupRelation();
-        attrAttrgroupRelation.setAttrGroupId(attrVo.getAttrGroupId());
-        attrAttrgroupRelation.setAttrId(attrVo.getAttrId());
-        if (count > 0) {
-            attrAttrgroupRelationDao.update(attrAttrgroupRelation, new UpdateWrapper<AttrAttrgroupRelation>()
+        if (attr.getAttrType()== ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode()) {
+            Integer count = attrAttrgroupRelationDao.selectCount(new QueryWrapper<AttrAttrgroupRelation>()
                     .eq("attr_id", attrVo.getAttrId()));
-        } else {
-            attrAttrgroupRelationDao.insert(attrAttrgroupRelation);
+
+            //修改分组关联
+            AttrAttrgroupRelation attrAttrgroupRelation = new AttrAttrgroupRelation();
+            attrAttrgroupRelation.setAttrGroupId(attrVo.getAttrGroupId());
+            attrAttrgroupRelation.setAttrId(attrVo.getAttrId());
+            if (count > 0) {
+                attrAttrgroupRelationDao.update(attrAttrgroupRelation, new UpdateWrapper<AttrAttrgroupRelation>()
+                        .eq("attr_id", attrVo.getAttrId()));
+            } else {
+                attrAttrgroupRelationDao.insert(attrAttrgroupRelation);
+            }
         }
     }
-
 }
