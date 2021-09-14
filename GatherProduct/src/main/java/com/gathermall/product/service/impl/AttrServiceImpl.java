@@ -7,12 +7,14 @@ import com.gathermall.product.dao.AttrGroupDao;
 import com.gathermall.product.dao.CategoryDao;
 import com.gathermall.product.entity.*;
 import com.gathermall.product.service.CategoryService;
+import com.gathermall.product.vo.AttrGroupRelationVo;
 import com.gathermall.product.vo.AttrRespVo;
 import com.gathermall.product.vo.AttrVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -191,5 +193,32 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
                 attrAttrgroupRelationDao.insert(attrAttrgroupRelation);
             }
         }
+    }
+
+    /**
+     * 根据分组id查找关联的所有基本属性
+     * @param attrGroupId
+     * @return
+     */
+    @Override
+    public List<Attr> getRelationAttr(Long attrGroupId) {
+        List<AttrAttrgroupRelation> list = attrAttrgroupRelationDao.selectList(new QueryWrapper<AttrAttrgroupRelation>().eq("attr_group_id", attrGroupId));
+
+        List<Long> attrIds = list.stream().map((attrAttrgroupRelation) -> attrAttrgroupRelation.getAttrId()).collect(Collectors.toList());
+
+        List<Attr> attrList = this.listByIds(attrIds);
+        return attrList;
+    }
+
+    @Override
+    public void deleteRelation(AttrGroupRelationVo[] vos) {
+
+        List<AttrAttrgroupRelation> list = Arrays.asList(vos).stream().map((item) -> {
+            AttrAttrgroupRelation attrAttrgroupRelation = new AttrAttrgroupRelation();
+            BeanUtils.copyProperties(item, attrAttrgroupRelation);
+            return attrAttrgroupRelation;
+        }).collect(Collectors.toList());
+        //批量删除
+        attrAttrgroupRelationDao.deleteBatchRelation(list);
     }
 }

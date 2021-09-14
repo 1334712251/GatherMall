@@ -2,15 +2,15 @@ package com.gathermall.product.controller;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.gathermall.product.entity.Attr;
+import com.gathermall.product.service.AttrService;
 import com.gathermall.product.service.CategoryService;
+import com.gathermall.product.vo.AttrGroupRelationVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.gathermall.product.entity.AttrGroup;
 import com.gathermall.product.service.AttrGroupService;
@@ -27,6 +27,31 @@ public class AttrGroupController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private AttrService attrService;
+
+
+    /**
+     * 查询关联关系
+     * @return
+     */
+    @GetMapping("/{attrGroupId}/attr/relation")
+    public R attrRelation(@PathVariable("attrGroupId")Long attrGroupId){
+        List<Attr> attrList = attrService.getRelationAttr(attrGroupId);
+        return R.ok().put("data",attrList);
+    }
+
+
+    /**
+     * 删除关联关系
+     * @return
+     */
+    @RequestMapping("/attr/relation/delete")
+    public R deleteRelation(@RequestBody  AttrGroupRelationVo[] vos){
+        attrService.deleteRelation(vos);
+        return R.ok();
+    }
 
     /**
      * 列表
