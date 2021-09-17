@@ -2,8 +2,10 @@ package com.gathermall.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.gathermall.common.utils.PageUtils;
+import com.gathermall.product.entity.Brand;
 import com.gathermall.product.entity.CategoryBrandRelation;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -17,6 +19,6 @@ public interface CategoryBrandRelationService extends IService<CategoryBrandRela
 
     void updateCategory(Long catId, String name);
 
-    void getBrandByCatId(Long catId);
+    List<Brand> getBrandByCatId(Long catId);
 }
 
