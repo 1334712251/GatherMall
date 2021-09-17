@@ -225,4 +225,47 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
         //批量删除
         attrAttrgroupRelationDao.deleteBatchRelation(list);
     }
+
+
+    /**
+     * TODO 待测
+     *
+     * 获取当前分组没有关联的所有属性
+     *
+     * @param params
+     * @param attrGroupId
+     * @return
+     */
+    @Override
+    public PageUtils getNoRelationAttr(Map<String, Object> params, Long attrGroupId) {
+        //当前分组只能关联自己所属的分类里面的所有属性
+        AttrGroup attrGroup = attrGroupDao.selectById(attrGroupId);
+        Long catelogId = attrGroup.getCatelogId();
+        //当前分组只能只能关联别的分组没有引用的属性
+        //2-1  当前分类下的其它分组
+        List<AttrGroup> groupList = attrGroupDao.selectList(new QueryWrapper<AttrGroup>().eq("catelog_id", catelogId));
+        List<Long> collect = groupList.stream().map(item -> {
+            return item.getAttrGroupId();
+        }).collect(Collectors.toList());
+        //2-2  这些分组关联的属性
+        List<AttrAttrgroupRelation> groupId = attrAttrgroupRelationDao.selectList(new QueryWrapper<AttrAttrgroupRelation>().in("attr_group_id", collect));
+        List<Long> attrIds = groupId.stream().map(item -> {
+            return item.getAttrId();
+        }).collect(Collectors.toList());
+        //2-3  从当前分类的所有属性中移除这些属性
+        QueryWrapper<Attr> wrapper = new QueryWrapper<Attr>().eq("catelog_id", catelogId).eq("attr_type", ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode());
+        if (attrIds != null && attrIds.size() > 0) {
+            wrapper.notIn("attr_id", attrIds);
+        }
+        //条件查询
+        String key = (String) params.get("key");
+        if (!StringUtils.isEmpty(key)) {
+            wrapper.and((w) -> {
+                w.eq("attr_id", key).or().like("attr_name", key);
+            });
+        }
+        IPage<Attr> page = this.page(new Query<Attr>().getPage(params), wrapper);
+
+        return new PageUtils(page);
+    }
 }
