@@ -48,7 +48,6 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
     private CategoryService categoryService;
 
     /**
-     *
      * @param params
      * @return
      */
@@ -90,8 +89,9 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
 
     /**
      * TODO 优化：把分类和分组信息放在redis里面
-     *
+     * <p>
      * 匹配分类名字和分组名字
+     *
      * @param attrType
      * @param page
      * @return
@@ -129,7 +129,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
         BeanUtils.copyProperties(attrVo, attr);   //复制属性，从attrVo复制到attr里面
         this.save(attr);
         //保存关联关系
-        if (attrVo.getAttrType()== ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode()){
+        if (attrVo.getAttrType() == ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode()) {
             AttrAttrgroupRelation attrAttrgroupRelation = new AttrAttrgroupRelation();
             attrAttrgroupRelation.setAttrGroupId(attrVo.getAttrGroupId());
             attrAttrgroupRelation.setAttrId(attrVo.getAttrId());
@@ -143,7 +143,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
         Attr attr = this.getById(attrId);
         BeanUtils.copyProperties(attr, respVo);
 
-        if (attr.getAttrType()== ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode()) {
+        if (attr.getAttrType() == ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode()) {
             //设置分组信息
             AttrAttrgroupRelation attrAttrgroupRelation = attrAttrgroupRelationDao.selectOne(new QueryWrapper<AttrAttrgroupRelation>()
                     .eq("attr_id", attrId));
@@ -170,6 +170,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
 
     /**
      * 更新时要指明更新的类型
+     *
      * @param attrVo
      */
     @Override
@@ -178,7 +179,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
         BeanUtils.copyProperties(attrVo, attr);
         this.updateById(attr);
 
-        if (attr.getAttrType()== ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode()) {
+        if (attr.getAttrType() == ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode()) {
             Integer count = attrAttrgroupRelationDao.selectCount(new QueryWrapper<AttrAttrgroupRelation>()
                     .eq("attr_id", attrVo.getAttrId()));
 
@@ -197,6 +198,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
 
     /**
      * 根据分组id查找关联的所有基本属性
+     *
      * @param attrGroupId
      * @return
      */
@@ -206,6 +208,9 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
 
         List<Long> attrIds = list.stream().map((attrAttrgroupRelation) -> attrAttrgroupRelation.getAttrId()).collect(Collectors.toList());
 
+        if (attrIds == null || attrIds.size() == 0) {
+            return null;
+        }
         List<Attr> attrList = this.listByIds(attrIds);
         return attrList;
     }
