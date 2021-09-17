@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("Member/integrationchangehistory")
+@RequestMapping("/member/integrationchangehistory")
 public class IntegrationChangeHistoryController {
     @Autowired
     private IntegrationChangeHistoryService integrationChangeHistoryService;

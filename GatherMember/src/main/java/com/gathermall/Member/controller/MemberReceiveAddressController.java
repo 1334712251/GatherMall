@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("Member/memberreceiveaddress")
+@RequestMapping("/member/memberreceiveaddress")
 public class MemberReceiveAddressController {
     @Autowired
     private MemberReceiveAddressService memberReceiveAddressService;

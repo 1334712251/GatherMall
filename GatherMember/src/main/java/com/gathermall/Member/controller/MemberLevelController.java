@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("Member/memberlevel")
+@RequestMapping("/member/memberlevel")
 public class MemberLevelController {
     @Autowired
     private MemberLevelService memberLevelService;

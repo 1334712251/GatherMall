@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("Member/membercollectsubject")
+@RequestMapping("/member/membercollectsubject")
 public class MemberCollectSubjectController {
     @Autowired
     private MemberCollectSubjectService memberCollectSubjectService;

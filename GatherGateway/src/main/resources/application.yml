@@ -23,8 +23,15 @@ spring:
             - Path=/api/product/**
           filters:
             - RewritePath=/api/product/(?<segment>.*),/product/$\{segment}
+              #http://localhost:88/api/product/attr/base/list/0?t=1631368788763&page=1&limit=10&key=
 
-          #http://localhost:88/api/product/attr/base/list/0?t=1631368788763&page=1&limit=10&key=
+        - id: member_route
+            uri: lb://GatherMember
+            predicates:
+              - Path=/api/member/**
+            filters:
+              - RewritePath=/api/member/(?<segment>.*),/member/$\{segment}
+
 
         - id: third_party_route
           uri: lb://GatherThirdParty

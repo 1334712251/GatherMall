@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("Member/memberstatisticsinfo")
+@RequestMapping("/member/memberstatisticsinfo")
 public class MemberStatisticsInfoController {
     @Autowired
     private MemberStatisticsInfoService memberStatisticsInfoService;

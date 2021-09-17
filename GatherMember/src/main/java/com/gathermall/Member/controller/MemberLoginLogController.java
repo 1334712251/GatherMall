@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("Member/memberloginlog")
+@RequestMapping("/member/memberloginlog")
 public class MemberLoginLogController {
     @Autowired
     private MemberLoginLogService memberLoginLogService;

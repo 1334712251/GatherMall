@@ -19,7 +19,7 @@ import com.gathermall.common.utils.R;
 
 @RefreshScope
 @RestController
-@RequestMapping("Member/growthchangehistory")
+@RequestMapping("/member/growthchangehistory")
 public class GrowthChangeHistoryController {
     @Autowired
     private GrowthChangeHistoryService growthChangeHistoryService;
