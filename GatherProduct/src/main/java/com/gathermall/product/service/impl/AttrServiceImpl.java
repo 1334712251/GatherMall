@@ -212,7 +212,6 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
 
     @Override
     public void deleteRelation(AttrGroupRelationVo[] vos) {
-
         List<AttrAttrgroupRelation> list = Arrays.asList(vos).stream().map((item) -> {
             AttrAttrgroupRelation attrAttrgroupRelation = new AttrAttrgroupRelation();
             BeanUtils.copyProperties(item, attrAttrgroupRelation);
