@@ -31,6 +31,16 @@ public class CategoryBrandRelationController {
         return R.ok().put("page", page);
     }
 
+
+
+    @GetMapping("/brands/list")
+    public R relationBrandList(@RequestParam(value = "catId",required = true)Long catId){
+        categoryBrandRelationService.getBrandByCatId(catId);
+        return R.ok();
+    }
+
+
+
     /**
      * 获取品牌关联的分类
      * @param brandId
