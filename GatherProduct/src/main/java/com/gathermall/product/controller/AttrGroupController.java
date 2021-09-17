@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.gathermall.product.entity.Attr;
+import com.gathermall.product.service.AttrAttrgroupRelationService;
 import com.gathermall.product.service.AttrService;
 import com.gathermall.product.service.CategoryService;
 import com.gathermall.product.vo.AttrGroupRelationVo;
@@ -31,6 +32,15 @@ public class AttrGroupController {
     @Autowired
     private AttrService attrService;
 
+    @Autowired
+    private AttrAttrgroupRelationService attrAttrgroupRelationService;
+
+
+    @RequestMapping("/attr/relation")
+    public R addRelation(@RequestBody List<AttrGroupRelationVo> vos){
+        attrAttrgroupRelationService.saveBatch(vos);
+        return R.ok();
+    }
 
     /**
      * 查询关联关系
@@ -51,7 +61,6 @@ public class AttrGroupController {
      * @param params
      * @return
      */
-    // http://localhost:88/api/product/attrgroup/1/noattr/relation?t=1631881874246&page=1&limit=10&key=
     @GetMapping("/{attrGroupId}/noattr/relation")
     public R attrNoRelation(@PathVariable("attrGroupId") Long attrGroupId,
                             @RequestParam Map<String, Object> params) {

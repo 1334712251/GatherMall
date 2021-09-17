@@ -107,7 +107,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
                 AttrAttrgroupRelation attrId = attrAttrgroupRelationDao
                         .selectOne(new QueryWrapper<AttrAttrgroupRelation>()
                                 .eq("attr_id", attr.getAttrId()));
-                if (!StringUtils.isEmpty(attrId)) {
+                if ((!StringUtils.isEmpty(attrId)) && (!StringUtils.isEmpty(attrId.getAttrGroupId()))) {
                     AttrGroup attrGroup = attrGroupDao.selectById(attrId.getAttrGroupId());
                     attrRespVo.setGroupName(attrGroup.getAttrGroupName());
                 }
@@ -129,7 +129,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
         BeanUtils.copyProperties(attrVo, attr);   //复制属性，从attrVo复制到attr里面
         this.save(attr);
         //保存关联关系
-        if (attrVo.getAttrType() == ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode()) {
+        if (attrVo.getAttrType() == ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode() && !StringUtils.isEmpty(attr.getAttrGroupId())) {
             AttrAttrgroupRelation attrAttrgroupRelation = new AttrAttrgroupRelation();
             attrAttrgroupRelation.setAttrGroupId(attrVo.getAttrGroupId());
             attrAttrgroupRelation.setAttrId(attrVo.getAttrId());
@@ -229,7 +229,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
 
     /**
      * TODO 待测
-     *
+     * <p>
      * 获取当前分组没有关联的所有属性
      *
      * @param params
