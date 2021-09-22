@@ -64,7 +64,6 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroup> i
      */
     @Override
     public List<AttrGroupWithAttrsVo> getAttrGroupWithAttrsByCatelogId(Long catelogId) {
-        //com.atguigu.gulimall.product.vo
         //1、查询分组信息
         List<AttrGroup> attrGroupEntities = this.list(new QueryWrapper<AttrGroup>().eq("catelog_id", catelogId));
 
@@ -76,9 +75,6 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroup> i
             attrsVo.setAttrs(attrs);
             return attrsVo;
         }).collect(Collectors.toList());
-
         return collect;
-
-
     }
 }
