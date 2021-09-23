@@ -188,6 +188,11 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> impleme
                 if (skuReductionTo.getFullCount() > 0 || skuReductionTo.getFullPrice().compareTo(new BigDecimal("0")) == 1) {
                     R r1 = operationFeignService.saveSkuReduction(skuReductionTo);
                     if (r1.getCode() != 0) {
+                        try {
+                            throw new Exception("远程保存sku优惠信息失败");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         log.error("远程保存sku优惠信息失败");
                     }
                 }
