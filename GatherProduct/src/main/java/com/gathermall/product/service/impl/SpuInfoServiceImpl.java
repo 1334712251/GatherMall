@@ -114,12 +114,17 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> impleme
 
         //5、保存spu的积分信息；gulimall_sms->sms_spu_bounds
         //调用优惠券服务(即运营服务)
-        BoundsVo bounds = vo.getBounds();
+        BoundsVo boundsVo = vo.getBounds();
         SpuBoundTo spuBoundTo = new SpuBoundTo();
-        BeanUtils.copyProperties(bounds, spuBoundTo);
+        BeanUtils.copyProperties(boundsVo, spuBoundTo);
         spuBoundTo.setSpuId(spuInfo.getId());
         R r = operationFeignService.saveSpuBounds(spuBoundTo);
         if (r.getCode() != 0) {
+            try {
+                throw new Exception("远程保存spu积分信息失败");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             log.error("远程保存spu积分信息失败");
         }
 

@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("operation/coupon")
+@RequestMapping("/operation/coupon")
 public class CouponController {
     @Autowired
     private CouponService couponService;

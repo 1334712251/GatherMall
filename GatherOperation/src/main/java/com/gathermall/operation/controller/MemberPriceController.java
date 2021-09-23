@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("operation/memberprice")
+@RequestMapping("/operation/memberprice")
 public class MemberPriceController {
     @Autowired
     private MemberPriceService memberPriceService;

@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("operation/skuladder")
+@RequestMapping("/operation/skuladder")
 public class SkuLadderController {
     @Autowired
     private SkuLadderService skuLadderService;

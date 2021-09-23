@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("operation/homeadv")
+@RequestMapping("/operation/homeadv")
 public class HomeAdvController {
     @Autowired
     private HomeAdvService homeAdvService;

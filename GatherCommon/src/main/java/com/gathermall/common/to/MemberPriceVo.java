@@ -1,7 +1,7 @@
 /**
   * Copyright 2019 bejson.com 
   */
-package com.gathermall.product.vo;
+package com.gathermall.common.to;
 
 import lombok.Data;
 
