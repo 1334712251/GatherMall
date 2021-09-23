@@ -13,7 +13,7 @@
         <module>GatherProduct</module>       <!--商品服务-->
         <module>GatherOrder</module>         <!--订单服务-->
         <module>GatherWare</module>          <!--仓库服务-->
-        <module>GatherOperation</module>     <!--优惠券服务-->
+        <module>GatherOperation</module>     <!--优惠券服务    运营服务-->
         <module>GatherMember</module>        <!--会员服务-->
         <module>renren-fast</module>         <!--后台服务-->
         <module>renren-generator</module>    <!--代码生成器-->
