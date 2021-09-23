@@ -10,5 +10,7 @@ import java.util.Map;
 public interface SkuInfoService extends IService<SkuInfo> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    void saveSkuInfo(SkuInfo skuInfo);
 }
 

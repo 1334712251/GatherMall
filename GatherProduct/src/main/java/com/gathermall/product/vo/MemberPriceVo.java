@@ -5,6 +5,8 @@ package com.gathermall.product.vo;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 /**
  * Auto-generated: 2019-11-26 10:50:34
  *
@@ -12,10 +14,10 @@ import lombok.Data;
  * @website http://www.bejson.com/java2pojo/
  */
 @Data
-public class Images {
+public class MemberPriceVo {
 
-    private String imgUrl;
-    private int defaultImg;
-
+    private Long id;
+    private String name;
+    private BigDecimal price;
 
 }

@@ -1,7 +1,11 @@
 package com.gathermall.product.service.impl;
 
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -26,6 +30,22 @@ public class SpuImagesServiceImpl extends ServiceImpl<SpuImagesDao, SpuImages> i
         );
 
         return new PageUtils(page);
+    }
+
+    @Override
+    public void saveImages(Long id, List<String> images) {
+        if(images == null || images.size() == 0){
+
+        }else{
+            List<SpuImages> collect = images.stream().map(img -> {
+                SpuImages spuImages = new SpuImages();
+                spuImages.setSpuId(id);
+                spuImages.setImgUrl(img);
+
+                return spuImages;
+            }).collect(Collectors.toList());
+            this.saveBatch(collect);
+        }
     }
 
 }

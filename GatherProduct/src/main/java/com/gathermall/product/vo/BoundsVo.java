@@ -14,7 +14,7 @@ import java.math.BigDecimal;
  * @website http://www.bejson.com/java2pojo/
  */
 @Data
-public class Bounds {
+public class BoundsVo {
 
     private BigDecimal buyBounds;
     private BigDecimal growBounds;

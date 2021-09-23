@@ -1,6 +1,6 @@
 /**
-  * Copyright 2019 bejson.com 
-  */
+ * Copyright 2019 bejson.com
+ */
 package com.gathermall.product.vo;
 
 import lombok.Data;
@@ -12,10 +12,12 @@ import lombok.Data;
  * @website http://www.bejson.com/java2pojo/
  */
 @Data
-public class Attr {
+public class BaseAttrsVo {
 
     private Long attrId;
-    private String attrName;
-    private String attrValue;
+    private String attrValues;
+    private int showDesc;
+
+
 
 }

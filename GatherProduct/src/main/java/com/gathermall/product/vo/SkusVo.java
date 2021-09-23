@@ -14,14 +14,14 @@ import java.util.List;
  * @website http://www.bejson.com/java2pojo/
  */
 @Data
-public class Skus {
+public class SkusVo {
 
-    private List<Attr> attr;
+    private List<AttrsVo> attr;
     private String skuName;
     private BigDecimal price;
     private String skuTitle;
     private String skuSubtitle;
-    private List<Images> images;
+    private List<ImagesVo> images;
     private List<String> descar;
     private int fullCount;
     private BigDecimal discount;
@@ -29,7 +29,7 @@ public class Skus {
     private BigDecimal fullPrice;
     private BigDecimal reducePrice;
     private int priceStatus;
-    private List<MemberPrice> memberPrice;
+    private List<MemberPriceVo> memberPrice;
 
 
 }

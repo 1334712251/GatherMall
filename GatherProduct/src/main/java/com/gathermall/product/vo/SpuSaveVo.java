@@ -25,9 +25,9 @@ public class SpuSaveVo {
     private int publishStatus;
     private List<String> decript;
     private List<String> images;
-    private Bounds bounds;
-    private List<BaseAttrs> baseAttrs;
-    private List<Skus> skus;
+    private BoundsVo bounds;
+    private List<BaseAttrsVo> baseAttrs;
+    private List<SkusVo> skus;
 
 
 

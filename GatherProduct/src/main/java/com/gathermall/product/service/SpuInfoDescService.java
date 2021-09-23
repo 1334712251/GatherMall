@@ -10,5 +10,7 @@ import java.util.Map;
 public interface SpuInfoDescService extends IService<SpuInfoDesc> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    void saveSpuInfoDesc(SpuInfoDesc descEntity);
 }
 

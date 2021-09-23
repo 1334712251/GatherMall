@@ -28,4 +28,10 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfo> impleme
         return new PageUtils(page);
     }
 
+
+    @Override
+    public void saveSkuInfo(SkuInfo skuInfo) {
+        this.baseMapper.insert(skuInfo);
+    }
+
 }
