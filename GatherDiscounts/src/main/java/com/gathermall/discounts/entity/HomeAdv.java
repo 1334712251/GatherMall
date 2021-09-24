@@ -12,7 +12,7 @@ import lombok.Data;
  *
  */
 @Data
-@TableName("operation_home_adv")
+@TableName("discounts_home_adv")
 public class HomeAdv implements Serializable {
 	private static final long serialVersionUID = 1L;
 

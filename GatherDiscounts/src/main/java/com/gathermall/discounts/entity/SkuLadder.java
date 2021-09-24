@@ -13,7 +13,7 @@ import lombok.Data;
  *
  */
 @Data
-@TableName("operation_sku_ladder")
+@TableName("discounts_sku_ladder")
 public class SkuLadder implements Serializable {
 	private static final long serialVersionUID = 1L;
 

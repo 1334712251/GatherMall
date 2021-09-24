@@ -13,7 +13,7 @@ import lombok.Data;
  *
  */
 @Data
-@TableName("operation_member_price")
+@TableName("discounts_member_price")
 public class MemberPrice implements Serializable {
 	private static final long serialVersionUID = 1L;
 

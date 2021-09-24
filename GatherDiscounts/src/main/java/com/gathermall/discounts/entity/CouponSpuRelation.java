@@ -12,7 +12,7 @@ import lombok.Data;
  *
  */
 @Data
-@TableName("operation_coupon_spu_relation")
+@TableName("discounts_coupon_spu_relation")
 public class CouponSpuRelation implements Serializable {
 	private static final long serialVersionUID = 1L;
 

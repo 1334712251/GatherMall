@@ -12,7 +12,7 @@ import lombok.Data;
  *
  */
 @Data
-@TableName("operation_seckill_promotion")
+@TableName("discounts_seckill_promotion")
 public class SeckillPromotion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
