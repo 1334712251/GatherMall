@@ -12,7 +12,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("product/category")
+@RequestMapping("/product/category")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
