@@ -22,10 +22,10 @@ public interface OperationFeignService {
      * @param spuBoundTo
      * @return
      */
-    @PostMapping("/operation/spubounds/save")
+    @PostMapping("/discounts/spubounds/save")
     R saveSpuBounds(@RequestBody SpuBoundTo spuBoundTo);
 
 
-    @PostMapping("/operation/skufullreduction/saveinfo")
+    @PostMapping("/discounts/skufullreduction/saveinfo")
     R saveSkuReduction(@RequestBody SkuReductionTo skuReductionTo);
 }
