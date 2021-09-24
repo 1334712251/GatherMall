@@ -120,11 +120,11 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> impleme
         spuBoundTo.setSpuId(spuInfo.getId());
         R r = operationFeignService.saveSpuBounds(spuBoundTo);
         if (r.getCode() != 0) {
-            try {
-                throw new Exception("远程保存spu积分信息失败");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//            try {
+//                throw new Exception("远程保存spu积分信息失败");
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
             log.error("远程保存spu积分信息失败");
         }
 
@@ -163,12 +163,13 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> impleme
                     skuImagesEntity.setDefaultImg(img.getDefaultImg());
                     return skuImagesEntity;
                 }).filter(entity -> {
+                    //没有图片路径的无需保存
                     //返回true就是需要，false就是剔除
                     return !StringUtils.isEmpty(entity.getImgUrl());
                 }).collect(Collectors.toList());
                 //5.2）、sku的图片信息；pms_sku_image
                 skuImagesService.saveBatch(imagesEntities);
-                //TODO 没有图片路径的无需保存
+
 
                 List<AttrsVo> attrsVo = item.getAttr();
                 List<SkuSaleAttrValue> skuSaleAttrValueEntities = attrsVo.stream().map(a -> {
@@ -185,14 +186,14 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> impleme
                 SkuReductionTo skuReductionTo = new SkuReductionTo();
                 BeanUtils.copyProperties(item, skuReductionTo);
                 skuReductionTo.setSkuId(skuId);
-                if (skuReductionTo.getFullCount() > 0 || skuReductionTo.getFullPrice().compareTo(new BigDecimal("0")) == 1) {
+                if (skuReductionTo.getFullCount() > 0 || skuReductionTo.getFullPrice().compareTo(new BigDecimal(0)) == 1) {
                     R r1 = operationFeignService.saveSkuReduction(skuReductionTo);
                     if (r1.getCode() != 0) {
-                        try {
-                            throw new Exception("远程保存sku优惠信息失败");
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+//                        try {
+//                            throw new Exception("远程保存sku优惠信息失败");
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
                         log.error("远程保存sku优惠信息失败");
                     }
                 }
