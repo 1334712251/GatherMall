@@ -10,5 +10,7 @@ import java.util.Map;
 public interface WareSkuService extends IService<WareSku> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    void addStock(Long skuId, Long wareId, Integer skuNum);
 }
 
