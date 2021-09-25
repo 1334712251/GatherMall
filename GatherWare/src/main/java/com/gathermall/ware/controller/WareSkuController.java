@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("ware/waresku")
+@RequestMapping("/ware/waresku")
 public class WareSkuController {
     @Autowired
     private WareSkuService wareSkuService;

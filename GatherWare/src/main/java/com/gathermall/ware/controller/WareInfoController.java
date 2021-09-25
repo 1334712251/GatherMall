@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("ware/wareinfo")
+@RequestMapping("/ware/wareinfo")
 public class WareInfoController {
     @Autowired
     private WareInfoService wareInfoService;

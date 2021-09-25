@@ -11,6 +11,7 @@ import com.gathermall.common.utils.Query;
 import com.gathermall.ware.dao.WareInfoDao;
 import com.gathermall.ware.entity.WareInfo;
 import com.gathermall.ware.service.WareInfoService;
+import org.springframework.util.StringUtils;
 
 
 @Service("wareInfoService")
@@ -18,12 +19,20 @@ public class WareInfoServiceImpl extends ServiceImpl<WareInfoDao, WareInfo> impl
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<WareInfo> page = this.page(
-                new Query<WareInfo>().getPage(params),
-                new QueryWrapper<WareInfo>()
-        );
+
+        QueryWrapper<WareInfo> wareInfoEntityQueryWrapper = new QueryWrapper<>();
+        String key = (String) params.get("key");
+        if(!StringUtils.isEmpty(key)){
+            wareInfoEntityQueryWrapper.eq("id",key).or()
+                    .like("name",key)
+                    .or().like("address",key)
+                    .or().like("areacode",key);
+        }
+
+        IPage<WareInfo> page = this.page(new Query<WareInfo>().getPage(params), wareInfoEntityQueryWrapper);
 
         return new PageUtils(page);
     }
+
 
 }

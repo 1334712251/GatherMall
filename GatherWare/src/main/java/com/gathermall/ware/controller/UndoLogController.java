@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("ware/undolog")
+@RequestMapping("/ware/undolog")
 public class UndoLogController {
     @Autowired
     private UndoLogService undoLogService;

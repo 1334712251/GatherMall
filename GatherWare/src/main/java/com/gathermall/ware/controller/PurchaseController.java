@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("ware/purchase")
+@RequestMapping("/ware/purchase")
 public class PurchaseController {
     @Autowired
     private PurchaseService purchaseService;

@@ -39,6 +39,13 @@ spring:
           filters:
             - RewritePath=/api/discounts/(?<segment>.*),/discounts/$\{segment}
 
+        - id: ware_route
+          uri: lb://GatherWare
+          predicates:
+            - Path=/api/ware/**
+          filters:
+            - RewritePath=/api/ware/(?<segment>.*),/ware/$\{segment}
+
 
 
         - id: third_party_route
