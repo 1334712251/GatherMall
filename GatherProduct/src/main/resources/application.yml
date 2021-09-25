@@ -23,7 +23,8 @@ spring:
       discovery:
         server-addr: 120.26.84.226:8848
 
-
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 
 
 
