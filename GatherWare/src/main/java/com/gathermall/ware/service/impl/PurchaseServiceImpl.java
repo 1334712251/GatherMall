@@ -62,6 +62,10 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, Purchase> impl
     }
 
 
+    /**
+     * 合平采购单
+     * @param mergeVo
+     */
     @Override
     public void mergePurchase(MergeVo mergeVo) {
         Long purchaseId = mergeVo.getPurchaseId();
@@ -75,7 +79,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, Purchase> impl
             purchaseId = purchase.getId();
         }
 
-        //TODO 确认采购单状态是0,1才可以合并
+        //TODO 确认采购单状态是0,1才可以合并  (重要)
 
         List<Long> items = mergeVo.getItems();
         Long finalPurchaseId = purchaseId;
