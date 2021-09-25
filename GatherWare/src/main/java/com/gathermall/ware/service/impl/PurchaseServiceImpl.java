@@ -28,6 +28,7 @@ import com.gathermall.ware.service.PurchaseService;
 import org.springframework.transaction.annotation.Transactional;
 
 
+@Transactional
 @Service("purchaseService")
 public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, Purchase> implements PurchaseService {
 
@@ -60,14 +61,13 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, Purchase> impl
         return new PageUtils(page);
     }
 
-    @Transactional
+
     @Override
     public void mergePurchase(MergeVo mergeVo) {
         Long purchaseId = mergeVo.getPurchaseId();
         if(purchaseId == null){
             //1、新建一个
             Purchase purchase = new Purchase();
-
             purchase.setStatus(WareConstant.PurchaseStatusEnum.CREATED.getCode());
             purchase.setCreateTime(new Date());
             purchase.setUpdateTime(new Date());

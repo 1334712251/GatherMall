@@ -13,6 +13,9 @@ spring:
     application:
       name: GatherWare
 
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
   global-config:

@@ -1,6 +1,7 @@
 package com.gathermall.ware.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -85,6 +86,8 @@ public class PurchaseController {
      */
     @RequestMapping("/save")
     public R save(@RequestBody Purchase purchase){
+        purchase.setCreateTime(new Date());
+        purchase.setUpdateTime(new Date());
 		purchaseService.save(purchase);
 
         return R.ok();
