@@ -77,11 +77,10 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfo> impleme
             try {
                 BigDecimal bigDecimal = new BigDecimal(max);
 
-                if (bigDecimal.compareTo(new BigDecimal(0)) == 1) {
+                if (bigDecimal.compareTo(new BigDecimal(0)) == 1) {   //-1:小于  0:等于  1:大于
                     queryWrapper.le("price", max);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
             }
 
         }
