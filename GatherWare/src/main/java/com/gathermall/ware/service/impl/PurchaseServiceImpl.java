@@ -97,6 +97,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, Purchase> impl
         this.updateById(purchase);
     }
 
+
     /**
      *
      * @param ids 采购单id
@@ -104,16 +105,19 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, Purchase> impl
     @Override
     public void received(List<Long> ids) {
         //1、确认当前采购单是新建或者已分配状态
+        //Purchase采购单
         List<Purchase> collect = ids.stream().map(id -> {
             Purchase byId = this.getById(id);
             return byId;
         }).filter(item -> {
+            //新建和已分配
             if (item.getStatus() == WareConstant.PurchaseStatusEnum.CREATED.getCode() ||
                     item.getStatus() == WareConstant.PurchaseStatusEnum.ASSIGNED.getCode()) {
                 return true;
             }
             return false;
         }).map(item->{
+            //过滤掉都设置为 已领取 状态
             item.setStatus(WareConstant.PurchaseStatusEnum.RECEIVE.getCode());
             item.setUpdateTime(new Date());
             return item;
@@ -122,10 +126,9 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, Purchase> impl
         //2、改变采购单的状态
         this.updateBatchById(collect);
 
-
-
         //3、改变采购项的状态
         collect.forEach((item)->{
+            //PurchaseDetail 采购详情
             List<PurchaseDetail> entities = purchaseDetailService.listDetailByPurchaseId(item.getId());
             List<PurchaseDetail> detailEntities = entities.stream().map(entity -> {
                 PurchaseDetail purchaseDetail = new PurchaseDetail();
@@ -137,7 +140,6 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, Purchase> impl
         });
     }
 
-    @Transactional
     @Override
     public void done(PurchaseDoneVo doneVo) {
 
