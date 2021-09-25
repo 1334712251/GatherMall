@@ -10,5 +10,7 @@ import java.util.Map;
 public interface PurchaseService extends IService<Purchase> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    PageUtils queryPageUnreceivePurchase(Map<String, Object> params);
 }
 
