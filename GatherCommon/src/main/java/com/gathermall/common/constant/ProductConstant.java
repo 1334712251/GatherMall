@@ -1,9 +1,6 @@
 package com.gathermall.common.constant;
 
 
-import lombok.Data;
-
-
 public class ProductConstant {
 
     public enum AttrEnum {
