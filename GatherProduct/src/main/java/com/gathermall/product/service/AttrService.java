@@ -26,5 +26,7 @@ public interface AttrService extends IService<Attr> {
     void deleteRelation(AttrGroupRelationVo[] vos);
 
     PageUtils getNoRelationAttr(Map<String, Object> params, Long attrGroupId);
+
+    PageUtils queryBaseAttrPage(Map<String, Object> params, Long catelogId, String type);
 }
 
