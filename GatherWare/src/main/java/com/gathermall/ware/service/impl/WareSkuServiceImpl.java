@@ -17,9 +17,10 @@ import com.gathermall.common.utils.Query;
 import com.gathermall.ware.dao.WareSkuDao;
 import com.gathermall.ware.entity.WareSku;
 import com.gathermall.ware.service.WareSkuService;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-
+@Transactional
 @Service("wareSkuService")
 public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSku> implements WareSkuService {
 
