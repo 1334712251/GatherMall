@@ -18,8 +18,9 @@ import com.gathermall.product.service.ProductAttrValueService;
 import org.springframework.transaction.annotation.Transactional;
 
 
-@Service("productAttrValueService")
+
 @Transactional
+@Service("productAttrValueService")
 public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueDao, ProductAttrValue> implements ProductAttrValueService {
 
     @Override
