@@ -25,4 +25,4 @@ mybatis-plus:
 
 logging:
   level:
-    com.gathermall.product: debug
+    com.gathermall.ware: debug

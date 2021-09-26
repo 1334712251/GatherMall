@@ -19,7 +19,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("product/spuimages")
+@RequestMapping("/product/spuimages")
 public class SpuImagesController {
     @Autowired
     private SpuImagesService spuImagesService;

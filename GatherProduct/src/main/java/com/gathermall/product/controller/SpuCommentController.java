@@ -19,7 +19,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("product/spucomment")
+@RequestMapping("/product/spucomment")
 public class SpuCommentController {
     @Autowired
     private SpuCommentService spuCommentService;

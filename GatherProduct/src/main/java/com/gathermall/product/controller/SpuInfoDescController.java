@@ -19,7 +19,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("product/spuinfodesc")
+@RequestMapping("/product/spuinfodesc")
 public class SpuInfoDescController {
     @Autowired
     private SpuInfoDescService spuInfoDescService;

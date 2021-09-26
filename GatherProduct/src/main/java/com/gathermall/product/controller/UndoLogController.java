@@ -19,7 +19,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("product/undolog")
+@RequestMapping("/product/undolog")
 public class UndoLogController {
     @Autowired
     private UndoLogService undoLogService;

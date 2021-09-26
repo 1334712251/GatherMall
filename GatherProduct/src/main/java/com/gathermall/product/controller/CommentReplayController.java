@@ -15,11 +15,8 @@ import com.gathermall.product.service.CommentReplayService;
 import com.gathermall.common.utils.PageUtils;
 import com.gathermall.common.utils.R;
 
-
-
-
 @RestController
-@RequestMapping("product/commentreplay")
+@RequestMapping("/product/commentreplay")
 public class CommentReplayController {
     @Autowired
     private CommentReplayService commentReplayService;

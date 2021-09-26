@@ -19,7 +19,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("product/skuimages")
+@RequestMapping("/product/skuimages")
 public class SkuImagesController {
     @Autowired
     private SkuImagesService skuImagesService;

@@ -18,7 +18,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("product/categorybrandrelation")
+@RequestMapping("/product/categorybrandrelation")
 public class CategoryBrandRelationController {
 
     @Autowired
