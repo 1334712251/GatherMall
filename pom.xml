@@ -20,6 +20,7 @@
         <module>GatherCommon</module>        <!--公共依赖-->
         <module>GatherGateway</module>       <!--网关服务-->
         <module>GatherThirdParty</module>    <!--第三方服务-->
+        <module>GatherSearch</module>        <!--搜索服务-->
     </modules>
 
 </project>

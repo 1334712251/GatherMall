@@ -45,3 +45,4 @@ hs_err_pid*
 /renren-generator/target/
 /GatherThirdParty/src/main/resources/
 /GatherDiscounts/target/
+/GatherSearch/target/
