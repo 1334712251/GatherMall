@@ -1,0 +1,10 @@
+server:
+  port: 12000
+
+spring:
+  application:
+    name: GatherSearch
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 120.26.84.226:8848
