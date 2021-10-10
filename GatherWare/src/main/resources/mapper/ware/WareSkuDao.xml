@@ -21,4 +21,11 @@
     </update>
 
 
+    <select id="getSkuStock" resultType="java.lang.Long">
+        SELECT SUM(`stock` - `stock_locked`)
+        FROM `warehouse_ware_sku`
+        WHERE `sku_id` = #{skuId}
+    </select>
+
+
 </mapper>

@@ -2,11 +2,13 @@ package com.gathermall.ware.service.impl;
 
 import com.gathermall.common.utils.R;
 import com.gathermall.ware.feign.ProductFeignService;
+import com.gathermall.common.to.SkuHasStockVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -84,4 +86,17 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSku> impleme
         }
     }
 
+
+    @Override
+    public List<SkuHasStockVo> getSkuHasStock(List<Long> skuIds) {
+
+        List<SkuHasStockVo> skuHasStockVos = skuIds.stream().map(skuId -> {
+            Long count = baseMapper.getSkuStock(skuId);
+            SkuHasStockVo skuHasStockVo = new SkuHasStockVo();
+            skuHasStockVo.setSkuId(skuId);
+            skuHasStockVo.setHasStock(count != null && count > 0);
+            return skuHasStockVo;
+        }).collect(Collectors.toList());
+        return skuHasStockVos;
+    }
 }
