@@ -2,6 +2,7 @@ package com.gathermall.product.service.impl;
 
 import com.gathermall.common.to.SkuReductionTo;
 import com.gathermall.common.to.SpuBoundTo;
+import com.gathermall.common.to.es.SkuEsModel;
 import com.gathermall.common.utils.R;
 import com.gathermall.product.entity.*;
 import com.gathermall.product.feign.OperationFeignService;
@@ -56,6 +57,12 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> impleme
 
     @Autowired
     private OperationFeignService operationFeignService;
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private BrandService brandService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -246,6 +253,44 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> impleme
         IPage<SpuInfo> page = this.page(new Query<SpuInfo>().getPage(params), wrapper);
 
         return new PageUtils(page);
+    }
+
+    @Override
+    public void up(Long spuId) {
+
+        //查询当前sku的可以被用来检索的规格属性
+        List<ProductAttrValue> baseAttrs = productAttrValueService.baseAttrlistforspu(spuId);
+        List<Long> attrIds = baseAttrs.stream().map(attr -> {
+            return attr.getAttrId();
+        }).collect(Collectors.toList());
+
+        List<Long> searchAttrIds = attrService.selectSearchAttrIds(attrIds);
+
+
+        //1、查出当前spuId对应的所有sku信息，品牌的信息
+        List<SkuInfo> skuInfoList = skuInfoService.list(new QueryWrapper<SkuInfo>().eq("spu_id", spuId));
+        //2、封装每个sku信息
+        List<SkuEsModel> esProducts = skuInfoList.stream().map(sku -> {
+            //组装需要的数据
+            SkuEsModel skuEsModel = new SkuEsModel();
+            BeanUtils.copyProperties(sku,skuEsModel);
+            skuEsModel.setSkuPrice(sku.getPrice());
+            skuEsModel.setSkuImg(sku.getSkuDefaultImg());
+            //1、TODO 发送远程调用，库存系统查询是否有库存
+            //2、TODO 热度评分
+            //skuEsModel.setHasStock(sku.get);
+            Brand brand = brandService.getById(skuEsModel.getBrandId());
+            skuEsModel.setBrandName(brand.getName());
+            skuEsModel.setBrandImg(brand.getLogo());
+
+            Category category = categoryService.getById(skuEsModel.getCatalogId());
+            skuEsModel.setCatalogName(category.getName());
+
+
+            return skuEsModel;
+        }).collect(Collectors.toList());
+
+
     }
 
 

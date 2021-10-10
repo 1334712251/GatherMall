@@ -317,4 +317,10 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, Attr> implements AttrS
         pageUtils.setList(respVos);
         return pageUtils;
     }
+
+    @Override
+    public List<Long> selectSearchAttrIds(List<Long> attrIds) {
+
+        return baseMapper.selectBatchAttrIds(attrIds);
+    }
 }
