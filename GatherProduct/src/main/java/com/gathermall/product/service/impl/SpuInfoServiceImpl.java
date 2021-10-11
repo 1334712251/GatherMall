@@ -1,5 +1,6 @@
 package com.gathermall.product.service.impl;
 
+import com.gathermall.common.constant.ProductConstant;
 import com.gathermall.common.to.SkuHasStockVo;
 import com.gathermall.common.to.SkuReductionTo;
 import com.gathermall.common.to.SpuBoundTo;
@@ -7,6 +8,7 @@ import com.gathermall.common.to.es.SkuEsModel;
 import com.gathermall.common.utils.R;
 import com.gathermall.product.entity.*;
 import com.gathermall.product.feign.OperationFeignService;
+import com.gathermall.product.feign.SearchFeignService;
 import com.gathermall.product.feign.WareFeignService;
 import com.gathermall.product.service.*;
 import com.gathermall.product.vo.*;
@@ -68,9 +70,11 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> impleme
     @Autowired
     private BrandService brandService;
 
-
     @Autowired
     private WareFeignService wareFeignService;
+
+    @Autowired
+    private SearchFeignService searchFeignService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -298,14 +302,14 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> impleme
         }
         //2、封装每个sku信息
         Map<Long, Boolean> finalStockMap = stockMap;
-        List<SkuEsModel> esProducts = skuInfoList.stream().map(sku -> {
+        List<SkuEsModel> esUpProducts = skuInfoList.stream().map(sku -> {
             //组装需要的数据
             SkuEsModel skuEsModel = new SkuEsModel();
             BeanUtils.copyProperties(sku, skuEsModel);
             skuEsModel.setSkuPrice(sku.getPrice());
             skuEsModel.setSkuImg(sku.getSkuDefaultImg());
             //根据skuId来判断是否有库存
-            skuEsModel.setHasStock(finalStockMap ==null ? true : finalStockMap.get(sku.getSkuId()));
+            skuEsModel.setHasStock(finalStockMap == null ? true : finalStockMap.get(sku.getSkuId()));
             //2、TODO 热度评分，默认为0先
             skuEsModel.setHotScore(0L);
             Brand brand = brandService.getById(skuEsModel.getBrandId());
@@ -321,7 +325,14 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> impleme
         }).collect(Collectors.toList());
 
         //将数据发送给es服务进行保存
-
+        R r = searchFeignService.productStatusUp(esUpProducts);
+        if (r.getCode() == 0) {
+            //远程上架成功
+            baseMapper.updateSpuStatus(spuId, ProductConstant.StatusEnum.SPU_UP.getCode());
+        }else {
+            //远程上架失败
+            //TODO 重复调用，接口幂等性 ；重试机制
+        }
 
     }
 
