@@ -49,7 +49,6 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> impleme
     @Autowired
     private SkuImagesService skuImagesService;
 
-
     @Autowired
     private AttrService attrService;
 
