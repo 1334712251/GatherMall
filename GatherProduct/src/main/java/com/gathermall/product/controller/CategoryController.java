@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import com.gathermall.product.entity.Category;
@@ -16,6 +17,10 @@ import com.gathermall.common.utils.R;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
 
     /**
      * 列表
