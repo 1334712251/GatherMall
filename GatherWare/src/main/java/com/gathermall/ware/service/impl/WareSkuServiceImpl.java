@@ -79,7 +79,6 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSku> impleme
 
             }
 
-
             wareSkuDao.insert(wareSku);
         } else {
             wareSkuDao.addStock(skuId, wareId, skuNum);
@@ -91,6 +90,8 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSku> impleme
     public List<SkuHasStockVo> getSkuHasStock(List<Long> skuIds) {
 
         List<SkuHasStockVo> skuHasStockVos = skuIds.stream().map(skuId -> {
+
+            //查询当前sku的总库存量
             Long count = baseMapper.getSkuStock(skuId);
             SkuHasStockVo skuHasStockVo = new SkuHasStockVo();
             skuHasStockVo.setSkuId(skuId);

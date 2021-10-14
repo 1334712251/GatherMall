@@ -12,15 +12,13 @@ import com.gathermall.product.feign.SearchFeignService;
 import com.gathermall.product.feign.WareFeignService;
 import com.gathermall.product.service.*;
 import com.gathermall.product.vo.*;
+import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -294,8 +292,8 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> impleme
         //发送远程调用，库存系统查询是否有库存
         Map<Long, Boolean> stockMap = null;
         try {
-            R<List<SkuHasStockVo>> skuHasStock = wareFeignService.getSkuHasStock(skuIds);
-            stockMap = skuHasStock.getData().stream().collect(Collectors.toMap(SkuHasStockVo::getSkuId, item -> item.getHasStock()));
+            R r = wareFeignService.getSkuHasStock(skuIds);
+            stockMap = r.getData(new TypeToken<List<SkuHasStockVo>>(){}).stream().collect(Collectors.toMap(SkuHasStockVo::getSkuId, item -> item.getHasStock()));
         } catch (Exception e) {
             log.error("库存服务远程调用异常原因{}", e);
         }
@@ -331,6 +329,13 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfo> impleme
         }else {
             //远程上架失败
             //TODO 重复调用，接口幂等性 ；重试机制
+            //Feign调用流程
+            /**
+             * 1. 构造请求数据，将对象转为json
+             * 2. 发送请求进行执行
+             * 3. 执行成功进行解码
+             * 4. 执行请求会有重试机制
+             */
         }
 
     }

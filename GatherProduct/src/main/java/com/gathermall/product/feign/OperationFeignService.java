@@ -1,5 +1,6 @@
 package com.gathermall.product.feign;
 
+import com.gathermall.common.config.ServiceFeignConfiguration;
 import com.gathermall.common.to.SkuReductionTo;
 import com.gathermall.common.to.SpuBoundTo;
 import com.gathermall.common.utils.R;
@@ -7,7 +8,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient("GatherDiscounts")
+@FeignClient(value = "GatherDiscounts",configuration = ServiceFeignConfiguration.class)
 public interface OperationFeignService {
 
 

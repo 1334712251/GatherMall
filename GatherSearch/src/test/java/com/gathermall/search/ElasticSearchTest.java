@@ -1,7 +1,9 @@
 package com.gathermall.search;
 
+import com.gathermall.common.utils.R;
 import com.gathermall.search.config.ElasticSearchConfig;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import lombok.Data;
 import lombok.ToString;
 import org.apache.tomcat.util.json.JSONParserTokenManager;
@@ -30,6 +32,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.naming.directory.SearchResult;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -188,5 +192,26 @@ public class ElasticSearchTest {
     @Test
     public void contextLoads() {
         System.out.println(restHighLevelClient);
+    }
+
+
+    @Test
+    public void getData(){
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+
+        R r = new R().ok();
+        R r1 = r.setData(list);
+
+
+        List<Integer> data = r1.getData(new TypeToken<List<Integer>>() {
+        });
+
+        System.out.println(data.toString());
+
+
     }
 }

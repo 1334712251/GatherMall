@@ -24,19 +24,19 @@ public class ElasticSaveController {
 
     //上架商品
     @PostMapping("/product")
-    public R productStatusUp(@RequestBody List<SkuEsModel> skuEsModels){
+    public R productStatusUp(@RequestBody List<SkuEsModel> skuEsModels) {
         boolean b = false;
         try {
             //上架成功返回false，上架失败为true
             b = productSaveService.productStatusUp(skuEsModels);
         } catch (Exception e) {
-            log.error("ElasticSaveController商品上架错误： {}",e );
-            return R.error(BizCodeEnum.PRODUCT_UP_EXCEPTION.getCode(),BizCodeEnum.PRODUCT_UP_EXCEPTION.getMsg());
+            log.error("ElasticSaveController商品上架错误： {}", e);
+            return R.error(BizCodeEnum.PRODUCT_UP_EXCEPTION.getCode(), BizCodeEnum.PRODUCT_UP_EXCEPTION.getMsg());
         }
         if (!b) {
             return R.ok();
         } else {
-            return R.error(BizCodeEnum.PRODUCT_UP_EXCEPTION.getCode(),BizCodeEnum.PRODUCT_UP_EXCEPTION.getMsg());
+            return R.error(BizCodeEnum.PRODUCT_UP_EXCEPTION.getCode(), BizCodeEnum.PRODUCT_UP_EXCEPTION.getMsg());
         }
     }
 

@@ -49,8 +49,8 @@ public class ProductSaveServiceImpl implements ProductSaveService {
             return item.getId();
         }).collect(Collectors.toList());
 
-        log.info("商品上架完成,{},返回数据,{}",collect,bulk.toString());
+        log.info("商品上架完成：{},返回数据：{}", collect, bulk.toString());
 
-        return  b;
+        return b;
     }
 }
