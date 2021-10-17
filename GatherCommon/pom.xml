@@ -16,6 +16,7 @@
     <properties>
         <java.version>1.8</java.version>
         <springboot.redis.version>2.5.0</springboot.redis.version>
+        <springboot.cache.version>2.5.0</springboot.cache.version>
     </properties>
 
 
@@ -56,7 +57,18 @@
             <version>${springboot.redis.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+            <version>${springboot.cache.version}</version>
+        </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.redisson/redisson -->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.16.3</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
         <dependency>
