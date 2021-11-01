@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("order/paymentinfo")
+@RequestMapping("/order/paymentinfo")
 public class PaymentInfoController {
     @Autowired
     private PaymentInfoService paymentInfoService;

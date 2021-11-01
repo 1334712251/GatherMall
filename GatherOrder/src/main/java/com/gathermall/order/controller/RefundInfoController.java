@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("order/refundinfo")
+@RequestMapping("/order/refundinfo")
 public class RefundInfoController {
     @Autowired
     private RefundInfoService refundInfoService;

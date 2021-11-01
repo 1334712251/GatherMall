@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("order/order")
+@RequestMapping("/order/order")
 public class OrderController {
     @Autowired
     private OrderService orderService;

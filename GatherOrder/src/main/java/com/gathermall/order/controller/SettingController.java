@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("order/setting")
+@RequestMapping("/order/setting")
 public class SettingController {
     @Autowired
     private SettingService settingService;

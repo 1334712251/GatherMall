@@ -17,7 +17,7 @@ import com.gathermall.common.utils.R;
 
 
 @RestController
-@RequestMapping("order/returnreason")
+@RequestMapping("/order/returnreason")
 public class ReturnReasonController {
     @Autowired
     private ReturnReasonService returnReasonService;

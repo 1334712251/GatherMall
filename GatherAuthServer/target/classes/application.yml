@@ -1,0 +1,10 @@
+server:
+  port: 13000
+
+spring:
+  application:
+    name: GatherAuthServer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 120.26.84.226:8848

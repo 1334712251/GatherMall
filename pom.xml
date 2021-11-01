@@ -21,6 +21,7 @@
         <module>GatherGateway</module>       <!--网关服务-->
         <module>GatherThirdParty</module>    <!--第三方服务-->
         <module>GatherSearch</module>        <!--搜索服务-->
+        <module>GatherAuthServer</module>    <!--Auth授权中心（社交登录、OAuth2.0）-->
     </modules>
 
 </project>
