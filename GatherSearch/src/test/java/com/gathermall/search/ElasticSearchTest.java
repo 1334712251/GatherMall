@@ -58,7 +58,7 @@ public class ElasticSearchTest {
     @Test
     public void indexData() {
         IndexRequest indexRequest = new IndexRequest("users");   //保存的索引数据
-        indexRequest.id("1");       //数据的id
+        indexRequest.id("1");       //设置数据的id
         User user = new User();
         user.setUserName("zhangsan");
         user.setAge(18);

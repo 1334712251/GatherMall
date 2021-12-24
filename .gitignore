@@ -48,3 +48,7 @@ hs_err_pid*
 /GatherSearch/target/
 
 *//application.yml
+/GatherProduct/src/main/resources/*.yml
+/GatherOrder/src/main/resources/
+/GatherOrder/src/main/java/com/gathermall/order/controller/
+/GatherSearch/src/main/resources/
