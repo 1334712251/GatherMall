@@ -7,9 +7,9 @@ spring:
     name: GatherProduct
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://120.26.84.226/gather_mall_goods?characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://172.26.218.232/gather_mall_goods?characterEncoding=utf-8&useSSL=false
     username: root
-    password: mysql1553381095
+    password: 123456
     hikari:
       read-only: false
       connection-timeout: 60000
@@ -21,12 +21,12 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 120.26.84.226:8848
+        server-addr: 172.26.218.232:8848
 
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
   redis:
-    host: 120.26.84.226
+    host: 172.26.218.232
     port: 6379
     password: 123456
 

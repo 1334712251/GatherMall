@@ -3,13 +3,13 @@ server:
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://120.26.84.226/gather_mall_discounts?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://172.26.218.232/gather_mall_discounts?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
-    password: mysql1553381095
+    password: 123456
   cloud:
     nacos:
       discovery:
-        server-addr: 120.26.84.226:8848
+        server-addr: 172.26.218.232:8848
   application:
     name: GatherDiscounts
 

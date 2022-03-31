@@ -19,7 +19,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 120.26.84.226:8848
+        server-addr: 172.26.218.232:8848
   # jackson时间格式化
   jackson:
     time-zone: GMT+8
