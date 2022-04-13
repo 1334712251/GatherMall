@@ -52,3 +52,4 @@ hs_err_pid*
 /GatherOrder/src/main/resources/
 /GatherOrder/src/main/java/com/gathermall/order/controller/
 /GatherSearch/src/main/resources/
+/GatherAuthServer/target/

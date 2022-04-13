@@ -1,5 +1,5 @@
 server:
-  port: 10000
+  port: 14000
   tomcat:
     connection-timeout: 20000
 spring:
